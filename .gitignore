@@ -1,0 +1,5 @@
+# Ключи и конфиги WireGuard никогда не должны попадать в git
+*.conf
+*.key
+vpn.env
+clients/
