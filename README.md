@@ -21,14 +21,15 @@
 
 ## Установка (5 минут)
 
-На сервере под root:
+Репозиторий приватный, поэтому клонировать его на сервер по HTTPS нельзя (спросит пароль). Проще скопировать папку `server`
+со своего компьютера, где репозиторий уже склонирован:
 
 ```bash
-apt-get update && apt-get install -y git
-git clone -b claude/vpn-development-analysis-794l5s https://github.com/yaricsemenchuk/vpn.git
-cd vpn/server
-sudo FIRST_CLIENT=phone bash install.sh
+scp -r server root@IP_СЕРВЕРА:/root/vpn-server
+ssh root@IP_СЕРВЕРА "cd /root/vpn-server && FIRST_CLIENT=phone bash install.sh"
 ```
+
+(Если репозиторий публичный, можно вместо этого выполнить на сервере `git clone <адрес репозитория>` и запустить `sudo FIRST_CLIENT=phone bash server/install.sh`.)
 
 Скрипт поставит пакеты, включит маршрутизацию, сгенерирует ключи, поднимет `wg-quick@wg0` (автозапуск после перезагрузки)
 и сразу покажет QR-код для устройства `phone`.
